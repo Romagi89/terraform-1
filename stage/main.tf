@@ -6,6 +6,7 @@ module "mysg" {
 
 module "alb" {
   source        = "../modules/alb"
+   sg     = module.mysg.securityid
 }
 
 module "myautoscaling" {

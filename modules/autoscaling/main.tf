@@ -41,7 +41,7 @@ user_data = <<-EOF
      yum install httpd -y
      systemctl start httpd
      systemctl enable httpd
-     echo "welcome to devops class" > /var/www/html/index.html
+     echo "The hostname is: `hostname`." > /var/www/html/index.html
      EOF
 
 
@@ -62,11 +62,27 @@ resource "aws_autoscaling_group" "auto" {
   health_check_grace_period = 300
   health_check_type         = "EC2"
   desired_capacity          = 2
-  force_delete              = true
   placement_group           = aws_placement_group.web.id
   launch_configuration      = aws_launch_configuration.autoscaling.name
   vpc_zone_identifier       = data.aws_subnet_ids.subnet.ids
   target_group_arns = [var.mytargetgroup]
 
+
+lifecycle {
+    create_before_destroy = true
+}
 }
 
+resource "aws_autoscaling_policy" "cpu" {
+  name                      = "cpu-auto-scaling"
+  policy_type               = "TargetTrackingScaling"
+  autoscaling_group_name    = aws_autoscaling_group.auto.name
+  estimated_instance_warmup = 200
+  
+  target_tracking_configuration {
+predefined_metric_specification {
+predefined_metric_type = "ASGAverageCPUUtilization"
+}
+  target_value = 50
+}
+}

@@ -31,6 +31,8 @@ resource "aws_lb" "myalb" {
   load_balancer_type = "application"
   subnets            = data.aws_subnet_ids.subnet.ids
   ip_address_type    = "ipv4"
+  security_groups    = [var.sg]
+
 
   tags = {
 
