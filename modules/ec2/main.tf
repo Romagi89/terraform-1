@@ -25,6 +25,7 @@ resource "aws_instance" "example" {
   instance_type          = var.instance_type
   key_name               = "dev2020"
   vpc_security_group_ids = [var.sg]
+  subnet_id = var.subnets
   tags = {
     "Name"        = "webapp"
     "application" = "apache"
