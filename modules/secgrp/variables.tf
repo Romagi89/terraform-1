@@ -2,4 +2,4 @@
     type = string
 }*/
 
-variable "vpc" {}
+#variable "vpc" {}

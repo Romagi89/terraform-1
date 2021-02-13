@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg" {
-  vpc_id = var.vpc
+  #vpc_id = var.vpc
   name = "sg"
   ingress {
     description = "ssh"

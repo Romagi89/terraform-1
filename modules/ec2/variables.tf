@@ -6,6 +6,6 @@ variable "instance_type" {
 }
 
 variable "sg" {}
-variable "subnets"{}
+#variable "subnets"{}
 
 
