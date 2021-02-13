@@ -1,6 +1,6 @@
-resource "aws_security_group" "SG5" {
+resource "aws_security_group" "SG3" {
   #vpc_id = var.vpc
-  name = "SG5"
+  name = "SG3"
   ingress {
     description = "ssh"
     from_port   = 22
