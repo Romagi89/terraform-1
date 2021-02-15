@@ -1,9 +1,9 @@
 terraform {
       backend "s3" {
       bucket = "anita-terraform"
-      key    = "anita1/terraform.tfstate"
+      key    = "anita1-state/"
       region = "us-east-1"
-      dynamodb_table = "terraformfile"
+      
 
   }
 }
