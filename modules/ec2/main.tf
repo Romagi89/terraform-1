@@ -18,8 +18,6 @@ data "aws_ami" "amazonlx" {
   owners = ["amazon"] # Canonical
 }
 
-
-
 resource "aws_instance" "example" {
   ami                    = data.aws_ami.amazonlx.id
   instance_type          = var.instance_type
